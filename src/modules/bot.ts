@@ -197,7 +197,7 @@ export const startBotV2 = async () => {
                     callback_data: 'day-6',
                   },
                   {
-                    text: 'Недія',
+                    text: 'Неділя',
                     callback_data: 'day-7',
                   },
                 ],
