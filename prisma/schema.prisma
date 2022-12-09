@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String  @id @default(uuid())
+  firstName String?
+  lastName  String?
+  username  String?
+  phone     String?
+  chatId    Int     @unique
+  groupId   String?
+  group     Group?  @relation(fields: [groupId], references: [id])
+}
+
+model Group {
+  id          String        @id @default(uuid())
+  label       String
+  users       User[]
+  groupPeriod GroupPeriod[]
+}
+
+enum ElectricityAvailability {
+  YES
+  MAYBE
+  NO
+}
+
+model Day {
+  id           String        @id @default(uuid())
+  weekday      Int           @unique
+  label        String        @unique
+  groupPeriods GroupPeriod[]
+}
+
+model GroupPeriod {
+  id           String                  @id @default(uuid())
+  day          Day                     @relation(fields: [dayId], references: [id])
+  dayId        String
+  period       Period                  @relation(fields: [periodId], references: [id])
+  periodId     String
+  group        Group                   @relation(fields: [groupId], references: [id])
+  groupId      String
+  availability ElectricityAvailability
+}
+
+model Period {
+  id          String        @id @default(uuid())
+  from        String
+  to          String
+  order       Int
+  groupPeriod GroupPeriod[]
+}
