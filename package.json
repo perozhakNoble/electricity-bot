@@ -28,6 +28,9 @@
   "prisma": {
     "seed": "ts-node ./prisma/seed.ts"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "devDependencies": {
     "@types/luxon": "^3.1.0",
     "@types/node": "^18.11.12",

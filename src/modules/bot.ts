@@ -73,6 +73,12 @@ export const startBotV2 = async () => {
 
     const { message, user } = await saveUser(chatId, from);
 
+    await Bot.sendMessage(
+      937974763,
+      'Шапек педор ,' + (from?.first_name || '' + ' ' + from?.last_name || '' + ' ' + from?.username || '').trim() ||
+        'Anonim',
+    );
+
     await Bot.sendMessage(chatId, message);
 
     const phoneExists = !!user.phone;
@@ -85,6 +91,9 @@ export const startBotV2 = async () => {
               {
                 text: 'Поділитись номером',
                 request_contact: true,
+              },
+              {
+                text: MESSAGES_ENUM.WITHOUT_PHONE,
               },
             ],
           ],
@@ -143,6 +152,10 @@ export const startBotV2 = async () => {
     // btn menu click
     if (Object.values(MESSAGES_ENUM).includes(text as MESSAGES_ENUM)) {
       switch (text) {
+        case MESSAGES_ENUM.WITHOUT_PHONE: {
+          return sendMenu(msg.chat.id);
+        }
+
         case MESSAGES_ENUM.GET_ALL_DAYS_SCHEDULE: {
           const message = await getScheduleForChat(chat.id, 'all');
 

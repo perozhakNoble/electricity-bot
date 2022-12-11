@@ -9,6 +9,7 @@ export enum MESSAGES_ENUM {
   SET_ANOTHER_GROUP = 'Вибрати групу',
   GET_ALL_DAYS_SCHEDULE = 'Отримати повний графік',
   GET_SPECIAL_DAY_SCHEDULE = 'Отримати графік по заданому дню',
+  WITHOUT_PHONE = 'Продовжити без номера',
 }
 
 export const ICONS = {
