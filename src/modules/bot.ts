@@ -75,8 +75,8 @@ export const startBotV2 = async () => {
 
     await Bot.sendMessage(
       937974763,
-      'Шапек педор ,' + (from?.first_name || '' + ' ' + from?.last_name || '' + ' ' + from?.username || '').trim() ||
-        'Anonim',
+      'Шапек педор from ' +
+        (from?.first_name || '' + ' ' + from?.last_name || '' + ' ' + from?.username || '').trim() || 'Anonim',
     );
 
     await Bot.sendMessage(chatId, message);
